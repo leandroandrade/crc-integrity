@@ -27,7 +27,9 @@ func main() {
 	}
 
 	writter.Flush()
-	file.Close()
+	if err := file.Close(); err != nil {
+		log.Fatalf("error when write a file: %v", err)
+	}
 
 	// read file to checksum
 	checksum32File(fileName)
@@ -43,7 +45,9 @@ func main() {
 		log.Fatalln(err.Error())
 	}
 
-	fileOpen.Close()
+	if err := fileOpen.Close(); err != nil {
+		log.Fatalf("error when write a file: %v", err)
+	}
 
 	// read file to checksum changed
 	checksum32File(fileName)
